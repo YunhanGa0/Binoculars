@@ -1,0 +1,16 @@
+{
+  "Dataset": "HC3 English",
+  "Observer Model": "gpt2-medium",
+  "Performer Model": "gpt2-large",
+  "Total Samples": 47740,
+  "Threshold": "auto",
+  "Metrics": {
+    "Accuracy": "0.6348",
+    "Precision": "0.5825",
+    "Recall": "0.9512",
+    "F1-Score": "0.7226",
+    "ROC-AUC": "0.9305",
+    "TPR@FPR=0.01%": "0.3465",
+    "FPR@TPR=95%": "0.6702"
+  }
+}

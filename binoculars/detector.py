@@ -26,9 +26,9 @@ DEVICE_2 = "cuda:1" if torch.cuda.device_count() > 1 else DEVICE_1
 
 class Binoculars(object):
     def __init__(self,
-                 observer_name_or_path: str = "tiiuae/falcon-7b",
-                 performer_name_or_path: str = "tiiuae/falcon-7b-instruct",
-                 use_bfloat16: bool = True,
+                 observer_name_or_path: str = "EleutherAI/gpt-neo-1.3B",
+                 performer_name_or_path: str = "EleutherAI/gpt-neo-1.3B",
+                 use_bfloat16: bool = False,
                  max_token_observed: int = 512,
                  mode: str = "low-fpr",
                  ) -> None:
@@ -37,14 +37,12 @@ class Binoculars(object):
         self.change_mode(mode)
         self.observer_model = AutoModelForCausalLM.from_pretrained(observer_name_or_path,
                                                                    device_map={"": DEVICE_1},
-                                                                   trust_remote_code=True,
                                                                    torch_dtype=torch.bfloat16 if use_bfloat16
                                                                    else torch.float32,
                                                                    token=huggingface_config["TOKEN"]
                                                                    )
         self.performer_model = AutoModelForCausalLM.from_pretrained(performer_name_or_path,
                                                                     device_map={"": DEVICE_2},
-                                                                    trust_remote_code=True,
                                                                     torch_dtype=torch.bfloat16 if use_bfloat16
                                                                     else torch.float32,
                                                                     token=huggingface_config["TOKEN"]

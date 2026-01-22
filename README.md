@@ -10,6 +10,34 @@ decoder-only, causal language models have a huge overlap in pretraining datasets
 More details about the method and results can be found in our paper **Spotting LLMs with Binoculars: Zero-Shot
 Detection of Machine-Generated Text**.
 
+---
+
+## 🆕 HC3 Dataset Evaluation (New!)
+
+**Evaluate Binoculars on HC3 English dataset** - Test the method on the Human-ChatGPT Comparison Corpus!
+
+📚 **Documentation:**
+- [📖 **Evaluation Guide**](HC3_EVALUATION_README.md) - Complete usage guide
+- [🔍 **Why Two Models?**](DUAL_MODEL_EXPLANATION.md) - Dual model architecture explained
+
+**Quick Start:**
+```bash
+# 1. Prepare HC3 dataset
+python experiments/hc3_loader.py
+
+# 2. Quick test (100 samples, default: gpt-neo-1.3B + gpt-neo-2.7B)
+python experiments/run_hc3_evaluation.py --max_samples 100
+
+# 3. Full evaluation (high performance, requires 8GB GPU like RTX 2070S)
+python experiments/run_hc3_evaluation.py
+```
+
+**Key Metrics:** Accuracy, Precision, Recall, F1-Score, ROC-AUC, TPR@FPR=0.01%
+
+See [HC3_EVALUATION_README.md](HC3_EVALUATION_README.md) for detailed instructions.
+
+---
+
 ## Getting Started
 
 ### Installation

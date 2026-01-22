@@ -19,11 +19,13 @@ sns.set(style="darkgrid")
 
 
 def convert_to_pandas(human_scores, machine_scores):
-    human_scores = human_scores["score"]
-    machine_scores = machine_scores["score"]
+    # 从Dataset中提取score列，并转换为列表
+    human_scores_list = human_scores["score"] if isinstance(human_scores["score"], list) else list(human_scores["score"])
+    machine_scores_list = machine_scores["score"] if isinstance(machine_scores["score"], list) else list(machine_scores["score"])
 
     df = pd.DataFrame(
-        {"score": human_scores + machine_scores, "class": [0] * len(human_scores) + [1] * len(machine_scores)}
+        {"score": human_scores_list + machine_scores_list, 
+         "class": [0] * len(human_scores_list) + [1] * len(machine_scores_list)}
     )
     return df
 
